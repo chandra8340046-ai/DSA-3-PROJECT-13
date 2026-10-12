@@ -1,0 +1,26 @@
+Full-Text Search Engines on Suffix Arrays and LCP Arrays
+---------------------------------------------------------
+A full-text search engine is an information retrieval system designed to search through unstructured text documents efficiently.
+Traditional full-text search engines rely heavily on Inverted Indexes, which map terms to document posting lists containing word locations.
+However, Suffix Arrays combined with Longest Common Prefix (LCP) arrays present a powerful alternative for full-text pattern matching.
+
+A Suffix Array is a sorted array of all suffixes of a string.
+Given a text string T of length N, all N suffixes are sorted lexicographically.
+The construction of a Suffix Array can be achieved using an O(N log^2 N) prefix-doubling algorithm or more advanced linear-time O(N) SA-IS algorithms.
+In our DSA 3 project, we implement the prefix-doubling technique which ranks pairs of length 2^k at each iteration.
+
+Kasai's algorithm is an efficient method to build the LCP array from a given Suffix Array in O(N) time.
+The LCP array stores the lengths of the longest common prefixes between consecutive suffixes in the Suffix Array.
+By leveraging the property that the LCP value between adjacent suffixes changes by at most 1 when stepping from position i to i+1 in text order, Kasai algorithm computes all LCP values in linear time.
+
+Search within a Suffix Array is performed using LCP-accelerated Binary Search.
+By maintaining the LCP values between the search pattern and the left and right bounds of the search interval, we can skip redundant character comparisons.
+This improves pattern search complexity to O(P + log N) where P is pattern length and N is text length.
+
+Supported query modes in our search engine include:
+1. Substring Search: Locates any arbitrary sequence of characters within the indexed corpus.
+2. Prefix Search: Identifies terms or words that start with a given query string.
+3. Phrase Search: Matches multi-word phrases across sentence and document boundaries.
+
+Once suffix matches are identified in the Suffix Array, positions are mapped back to source documents using document boundary offsets.
+Relevance scores are calculated based on term frequency, match position, and query density to provide ranked search results.

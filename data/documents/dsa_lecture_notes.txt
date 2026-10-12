@@ -1,0 +1,39 @@
+DSA 3 Lecture Notes: Advanced String Processing & Indexing
+=========================================================
+Course: Data Structures and Algorithms 3 (DSA 3)
+Team 3 - Section 13
+Academic Year 2026-2027
+
+Topic 1: Text Ingestion and Normalization
+Text documents must be preprocessed before index construction.
+Normalization converts characters to lower case, handles UTF-8 encoding, and joins documents into a single concatenated text string.
+Unique sentinel separators (such as \x01, \x02) are inserted between document boundaries.
+Sentinels ensure that suffixes originating from one document do not improperly match into subsequent documents during pattern search.
+
+Topic 2: Suffix Array Construction
+The naive suffix array sorting takes O(N^2 log N) using standard string comparisons.
+The prefix doubling algorithm optimizes this by building ranks for substrings of length 1, 2, 4, 8, ... up to N.
+At step k, suffix i is represented by a 2-tuple (rank[i], rank[i + 2^k]).
+Sorting these tuples using radix sort or standard quicksort yields an overall time complexity of O(N log^2 N) or O(N log N).
+
+Topic 3: Kasai's Linear-Time LCP Algorithm
+Kasai et al. introduced an O(N) algorithm to compute LCP[i] = length of LCP of suffix SA[i] and SA[i-1].
+Let rank[i] be the index of suffix starting at position i in the suffix array SA.
+If we consider suffix at text position i and its predecessor suffix in SA, say position j = SA[rank[i]-1],
+the LCP of suffix i+1 and suffix j+1 is at least LCP(i, j) - 1.
+This key observation allows us to reuse character match counts (variable h) and decrement h at most N times overall.
+
+Topic 4: Comparison with Traditional Inverted Index
+Inverted indexes store a mapping from unique words (tokens) to posting lists containing document IDs and term frequencies.
+Advantages of Inverted Index:
+- Very fast lookup for single word exact matches.
+- Compact dictionary representation.
+
+Disadvantages of Inverted Index:
+- Struggles with arbitrary substring pattern matching (requires n-gram indexes).
+- Extra overhead for complex phrase and regex matching.
+
+Advantages of Suffix Array + LCP:
+- Supports arbitrary substring search, prefix search, and exact phrase matching out of the box.
+- Uniform data structure representing all suffixes of the entire text collection.
+- Memory footprint is predictable: N integers for Suffix Array and N integers for LCP Array.

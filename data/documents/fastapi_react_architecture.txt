@@ -1,0 +1,26 @@
+Full-Stack Application Architecture for DSA Search Engine
+========================================================
+Project: B.Tech DSA 3 Final Review Project
+Team 3 (Sai Krishna, Navaneeth, Chaitanya) - Section 13
+
+Frontend Architecture:
+The frontend is built with React and Vite, featuring a responsive dark/light academic dashboard.
+It provides intuitive pages for:
+1. Dashboard & High-level Metrics
+2. Document Ingestion and Upload
+3. Full-Text Search Interface with Substring, Prefix, and Phrase modes
+4. Detailed Document Match Viewer
+5. Performance Benchmarks and Analytics
+6. Algorithm Step-by-Step Visualization
+7. Suffix Array vs Inverted Index Comparison
+
+Backend Architecture:
+The backend is built with Python 3 and FastAPI, serving REST API endpoints.
+Core modules include:
+- suffix_array.py: Prefix-doubling O(N log^2 N) suffix array construction.
+- lcp.py: Kasai linear-time O(N) LCP array generation.
+- search_engine.py: LCP-accelerated binary search, suffix range finding, document mapping.
+- inverted_index.py: Inverted index implementation for empirical benchmark comparison.
+- ranking.py: Relevance scoring using frequency, pattern position, and text density.
+
+The REST API exposes health checks, document uploads, index build status, search queries, algorithm inspection, and automated benchmarks.
