@@ -1,7 +1,7 @@
 @echo off
 echo ====================================================================
 echo Pushing Suffix Array Search Engine to GitHub Repository
-echo Target: https://github.com/chandra8340046-ai/DSA-13--PRACTICAL.git
+echo Target: https://github.com/navaneeth5642-dot/DSA-3.git
 echo ====================================================================
 echo.
 
@@ -10,21 +10,12 @@ echo.
 if %ERRORLEVEL% NEQ 0 (
     echo.
     echo ====================================================================
-    echo [PERMISSION ERROR 403]
-    echo GitHub account 'navaneeth5642-dot' does not yet have write access
-    echo to repository 'chandra8340046-ai/DSA-13--PRACTICAL'.
-    echo.
-    echo FIX:
-    echo 1. Have chandra8340046-ai go to:
-    echo    https://github.com/chandra8340046-ai/DSA-13--PRACTICAL/settings/access
-    echo 2. Click "Add people" and invite: navaneeth5642-dot
-    echo 3. Accept the invitation in your GitHub email/dashboard.
-    echo 4. Run this script again!
+    echo [ERROR] Push failed. Please check your internet connection or git status.
     echo ====================================================================
 ) else (
     echo.
     echo ====================================================================
-    echo [SUCCESS] Pushed successfully to GitHub!
+    echo [SUCCESS] Pushed successfully to https://github.com/navaneeth5642-dot/DSA-3
     echo ====================================================================
 )
 
